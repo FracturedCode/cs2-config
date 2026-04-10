@@ -121,10 +121,6 @@ if (-not (Test-Path $autoexecSrc)) {
     throw "Source autoexec.cfg not found in current directory: $autoexecSrc"
 }
 
-if (Test-Path $autoexecDest) {
-    Remove-Item -Path $autoexecDest -Force
-}
-
 $createSymlinkCmd = "New-Item -Path `"$autoexecDest`" -Value `"$autoexecSrc`" -ItemType SymbolicLink -Force"
 if ($IsWindows) {
 	sudo powershell -Command "$createSymlinkCmd" # windows requires admin to symlink
